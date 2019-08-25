@@ -4,7 +4,7 @@ stages{
 stage ('Build'){
 steps{
 sh 'mvn clean package'
-sh 'docker build . -t newPipelineApp:${env.BUILD_ID}'
+sh 'docker build . -t newPipelineApp'
 }
 }
 }
