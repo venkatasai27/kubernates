@@ -4,7 +4,7 @@ stages{
 stage ('Build'){
 steps{
 sh 'mvn clean package'
-sh 'docker build . -t newPipelineApp'
+sh 'docker build . -t venkat'
 }
 }
 }
