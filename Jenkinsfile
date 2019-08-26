@@ -1,5 +1,10 @@
 pipeline{
 agent any
+
+environment {
+    registry = "mani9056/kubernates-demo"
+    registryCredential = ‘dockerhub’
+}
 stages{
 stage ('Build'){
 steps{
