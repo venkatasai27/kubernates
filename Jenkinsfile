@@ -12,5 +12,10 @@ sh 'mvn clean package'
 sh 'docker build . -t venkat'
 }
 }
+stage ('Test'){
+steps{
+sh 'mvn install'
+}
+}
 }
 }
