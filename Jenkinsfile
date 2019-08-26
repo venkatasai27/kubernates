@@ -3,7 +3,7 @@ agent any
 
 environment {
     registry = "mani9056/kubernates-demo"
-    registryCredential = ‘dockerhub’
+    registryCredential = "dockerhub"
 }
 stages{
 stage ('Build'){
