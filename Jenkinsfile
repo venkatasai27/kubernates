@@ -22,7 +22,7 @@ pipeline {
             steps {
     			checkout scm
                 sh("docker build -f Dockerfile .")
-                sh("docker login -u=\"venkatnatte\" -p=\"123@Docker\" https://cloud.docker.com")
+                sh("docker login --username=\"venkatnatte\" --password-stdin https://cloud.docker.com")
                 sh("docker push https://cloud.docker.com/repository/docker/venkatnatte/mydocker-repo")
                 sh("docker logout https://cloud.docker.com")
     		}
