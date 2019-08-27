@@ -4,8 +4,8 @@ agent any
 
 stages{
 stage ('Build'){
-agent {
-node {
+agent { node }
+steps {
     sh 'mvn clean package'
     def dockerfile = 'Dockerfile.test'
     def customImage = docker.build("my-image:venkat", "-f Dockerfile ./dockerfiles")
