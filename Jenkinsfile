@@ -18,7 +18,7 @@ pipeline {
         }
 
        stage('Docker Build') {
-            agent {master "master" }
+            agent {node "master" }
             steps {
     			checkout scm
                 sh("docker build -f Dockerfile .")
@@ -29,5 +29,5 @@ pipeline {
                 // some block
 		}
 	}
-	
+
 	}
