@@ -10,7 +10,8 @@ stage ('Build'){
 steps{
 sh 'mvn clean package'
 //sh 'docker build . -t venkat'
-docker.withRegistry(credentialsId: 'b2f908af-c4ab-4183-aef5-892c734913d1', url: 'https://cloud.docker.com'){
+docker.withRegistry('https://cloud.docker.com', 'b2f908af-c4ab-4183-aef5-892c734913d1') {
+//docker.withRegistry(credentialsId: 'b2f908af-c4ab-4183-aef5-892c734913d1', url: 'https://cloud.docker.com'){
  def customImage = docker.build("my-image:venkat")
 
         /* Push the container to the custom Registry */
