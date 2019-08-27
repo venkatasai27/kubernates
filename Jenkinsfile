@@ -1,26 +1,31 @@
-pipeline{
-agent any
+pipeline {
 
+   agent any
+   stages {
+       stage('Preparation') { // for display purposes
+            agent { node "master" }
+        	  steps {
+        		git credentialsId: 'GITHUB_CRED', url: 'https://github.com/nvramana8121/DemoRepository.git'
+        	  }
+        }
 
-stages{
-stage ('Build'){
-agent { node }
-steps {
-    sh 'mvn clean package'
-    def dockerfile = 'Dockerfile.test'
-    def customImage = docker.build("my-image:venkat", "-f Dockerfile ./dockerfiles")
-    }
-    }
-//steps{
-//sh 'mvn clean package'
-//sh 'docker build . -t venkat'
+       stage('Build') {
+          // Run the maven build
+    	    agent { node "master" }
+    	    steps {
+                sh ("mvn clean package")
+            }
+        }
 
-
-//sh("docker -- push https://cloud.docker.com/u/mani9056/repository/docker/mani9056/kubernates-demo")
- //sh "docker login -u=\"mani9056\" -p=\"MANIkanta@9533\" https://cloud.docker.com"
- //sh "docker push https://cloud.docker.com/u/mani9056/repository/docker/mani9056/kubernates-demo"
- //sh "docker logout https://cloud.docker.com"
-//}
-}
-}
-}
+       stage('Docker Build') {
+            agent {master "master" }
+            steps {
+    			checkout scm
+                sh("docker build -f Dockerfile .")
+                sh("docker login -u=\"venkatnatte\" -p=\"123@Docker\" https://cloud.docker.com")
+                sh("docker push https://cloud.docker.com/repository/docker/venkatnatte/mydocker-repo")
+                sh("docker logout https://cloud.docker.com")
+    		}
+                // some block
+		}
+	}
