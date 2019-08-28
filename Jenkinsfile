@@ -12,9 +12,11 @@ sh 'docker push mani9056/kubernates-demo'
 }
 }
 stage('Deploy on K8s'){
+steps{
 sh 'kubectl create -f deployment.yaml'
 sh 'kubectl apply -f service.yaml'
 sh 'kubectl get services'
+}
 }
 }
 }
