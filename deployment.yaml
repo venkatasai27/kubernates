@@ -1,0 +1,17 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: venkat-kubernatesdemo
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: kubernatesdemo
+    spec:
+      containers:
+        - name: back-end
+          image: venkat
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 80
